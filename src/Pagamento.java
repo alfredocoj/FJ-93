@@ -29,5 +29,9 @@ public class Pagamento {
     public void setData(Calendar data) {
         this.data = data;
     }
-	
+	@Override
+	public String toString() {
+		return "Pagamento [pagador=" + pagador + ", cnpjPagador=" + cnpjPagador + ", valor=" + valor + ", data=" + data
+				+ "]";
+	}
 }
