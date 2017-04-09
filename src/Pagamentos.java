@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Iterator;
 
-public class Pagamentos {
+public class Pagamentos implements Iterable<Pagamento> {
 	
 	private double valorPago;
 	private ArrayList<Pagamento> pagamentos = new ArrayList<Pagamento>();
@@ -16,7 +18,7 @@ public class Pagamentos {
     }
 	
 	// métodos que trabalham com a lista de pagamentos
-    public ArrayList<Pagamento> pagamentosAntesDe(Calendar data) {
+    public Collection<Pagamento> pagamentosAntesDe(Calendar data) {
         ArrayList<Pagamento> pagamentosFiltrados = new ArrayList<Pagamento>();
         for (Pagamento pagamento : this.pagamentos) {
             if (pagamento.getData().before(data)) {
@@ -25,6 +27,7 @@ public class Pagamentos {
         }
         return pagamentosFiltrados;
     }
+    
     public ArrayList<Pagamento> pagamentosComValorMaiorQue(double valorMinimo) {
         ArrayList<Pagamento> pagamentosFiltrados = new ArrayList<Pagamento>();
         for (Pagamento pagamento : this.pagamentos) {
@@ -34,10 +37,10 @@ public class Pagamentos {
         }
         return pagamentosFiltrados;
     }
-    public ArrayList<Pagamento> pagamentosDo(String cnpjPagador) {
-        ArrayList<Pagamento> pagamentosFiltrados = new ArrayList<Pagamento>();
+    public Collection<Pagamento> pagamentosDo(Documento documentoPagador) {
+    	Collection<Pagamento> pagamentosFiltrados = new ArrayList<Pagamento>();
         for (Pagamento pagamento : this.pagamentos) {
-            if (pagamento.getCnpjPagador().equals(cnpjPagador)) {
+            if (pagamento.getDocumentoPagador().equals(documentoPagador)) {
                 pagamentosFiltrados.add(pagamento);
             }
         }
@@ -53,4 +56,10 @@ public class Pagamentos {
         }
         this.valorPago += valor;
     }
+
+	@Override
+	public Iterator<Pagamento> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -2,12 +2,8 @@
 public class Divida {
 	private double total;
     private String credor;
-    private Cnpj cnpjCredor = new Cnpj();
+    private Documento documentoCredor;
     private Pagamentos pagamentos = new Pagamentos();
-    
-    public Cnpj getCnpjCredor() {
-		return cnpjCredor;
-	}
     
     public String getCredor() {
         return this.credor;
@@ -23,12 +19,24 @@ public class Divida {
     public void setTotal(double total) {
         this.total = total;
     }
-
-	public Pagamentos getPagamentos() {
-		return pagamentos;
-	}
 	
 	public double valorAPagar() {
         return this.total - this.pagamentos.getValorPago();
+    }
+
+    public void registra(Pagamento pagamento){
+        pagamentos.registra(pagamento);
+    }
+
+    public double getValorPago(){
+        return pagamentos.getValorPago();
+    }
+
+    public Documento getDocumentoCredor() {
+        return this.documentoCredor;
+    }
+    
+    public void setDocumentoCredor(Documento documentoCredor) {
+    	this.documentoCredor = documentoCredor;
     }
 }

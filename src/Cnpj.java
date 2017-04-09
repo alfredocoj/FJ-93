@@ -1,7 +1,10 @@
 
-public class Cnpj {
+public class Cnpj implements Documento {
 	 private String valor;
 	 
+	public Cnpj(String valor) {
+		this.valor = valor;
+	}
 	// métodos que trabalham com CNPJ
     public boolean cnpjValido() {
         return primeiroDigitoVerificadorDoCnpj() == primeiroDigitoCorretoParaCnpj()
@@ -57,5 +60,24 @@ public class Cnpj {
 		} else if (!valor.equals(other.valor))
 			return false;
 		return true;
+	}
+
+    @Override
+    public String toString(){
+        return this.valor;
+    }
+	public void setValor(String valor) {
+		this.valor = valor;
+		
+	}
+	@Override
+	public boolean ehValido() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public String getValor() {
+		// TODO Auto-generated method stub
+		return this.valor;
 	}
 }
